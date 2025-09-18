@@ -1,90 +1,109 @@
-/* Global */
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
+    <style>
+	    .banner { 
+		    position: relative; /* Keep it if needed */
+		    width: 100%;
+		    height: 60vh; /* Half of the viewport height */
+		    background-image: url('Diamond_RIng_Banner_2000x.png');
+		    background-size:cover;
+		    background-position: center;
+		    background-repeat: no-repeat;
+		    display: flex; /* Ensures content inside aligns properly */
+		    align-items: center; /* Center content vertically */
+		    justify-content: center; /* Center content horizontally */
+		    margin:0;
+		    padding:0 !important;
+		    border: 0; /* Temporary to check the actual size */
+	    }
+        * {
+		box-sizing: border-box;
+		margin: 0;
+		padding:0;
+    }
 
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-}
+        body {
+		min-height: 100vh;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		font-family: Arial, sans-serif;
+		background-color: #28156E; /* Light background color */
+        }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
 
-.hero p {
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  font-size: 1.2rem;
-}
 
-.btn {
-  display: inline-block;
-  background: #ffb400;
-  color: #000;
-  padding: 0.75rem 1.5rem;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
 
-.btn:hover {
-  background: #ffa000;
-}
+        .logo {
+            height: 350px;
+        }
 
-/* Files Section */
-.files-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
+        .nav-items {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
 
-.files-section h2 {
-  margin-bottom: 2rem;
-  font-size: 2rem;
-}
 
-.file-grid {
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  max-width: 1000px;
-  margin: 0 auto;
-}
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
 
-.file-card {
-  background: white;
-  padding: 2rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+        .product-card {
+            width: 200px;
+            height: 350px;
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #C28E00; /* Border color changed to #C28E00 */
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+            background-color: white;
+        }
 
-.file-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-.file-thumb {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
+        .product-card h3, .product-card p {
+            margin-top: 10px;
+        }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 2rem;
-  background: #222;
-  color: white;
-  margin-top: 3rem;
-}
+        .product-card a {
+            display: inline-block;
+            margin-top: 5px;
+            text-decoration: none;
+            color: hsl(211, 100%, 50%);
+        }
+	.small-product img {
+		transform: scale(0.8); /* Shrinks the image to 80% of original size */
+    }
+        .product-card a:hover {
+            color: #0056b3;
+        }
+        
+        header {
+	    	display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: auto;
+        }
+
+
+        .position {
+		
+		display: flex;
+		flex-direction: row;
+		justify-content: left;
+		align-items: center; /* Aligns items to the center */
+		gap: 5rem;
+		align-items: center;
+		position:absolute;
+		
+		
+	}
+            
+    </style>
