@@ -1,0 +1,41 @@
+html{
+    background-color: lightblue;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+    
+.title{
+    color: maroon;
+    text-align: center;
+    font-size: 50px;
+    justify-content: center;
+}
+
+.titles{
+    color: maroon;
+    text-align: center;
+    font-size: 25px;
+    justify-content: center;
+}
+
+.parts{
+    color: black;
+    flex-direction: row;
+    font-size: 35px;
+    padding-left: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-indent: 178px;
+}
+.partz{
+    color: black;
+    flex-direction: row;
+    font-size: 35px;
+    padding-left: 200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-indent: 165px;
+}
