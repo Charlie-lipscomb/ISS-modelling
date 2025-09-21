@@ -5,7 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novora Home Page</title>
     <style>
-	    .banner { 
+
+
+		
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 15vh;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInDown 1.2s ease;
+	
+}
+
+p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    opacity: 0.9;
+    animation: fadeInUp 1.2s ease;
+}
+
+/* Smooth animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+	  
+		.banner { 
 		    position: relative; /* Keep it if needed */
 		    width: 100%;
 		    height: 60vh; /* Half of the viewport height */
@@ -31,9 +81,14 @@
 		height: auto;
 		margin: 0;
 		padding: 0;
+			
 		font-family: Arial, sans-serif;
-		background-color: #BDDBFA; /* Light background color */
-        }
+		
+			background-color: #BDDBFA; /* Light background color */
+		
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        
+		}
 
 
 
@@ -222,6 +277,7 @@
 
 </body>
 </html>
+
 
 
 
