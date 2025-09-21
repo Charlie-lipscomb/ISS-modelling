@@ -139,6 +139,29 @@
   </style>
 </head>
 <body>
+  <!-- Add this overlay anywhere in your body -->
+  <div id="rotateOverlay" style="
+ 
+    display: none;
+
+    position: fixed;
+    
+
+    top:0; left:0;
+    width:100%;
+    height:100%;
+
+    background: rgba(0,0,0,0.95);
+    color: #FF6403;
+    font-size: 2rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    z-index: 9999;
+    padding: 20px;">
+  Please rotate your device to landscape for the best experience.
+</div>
 
   <!-- Full screen banner -->
   <header class="banner"></header>
@@ -161,6 +184,35 @@
 
   <!-- JavaScript for scroll animations and product generation -->
   <script>
+  
+    function checkOrientation() {
+
+      const overlay = document.getElementById('rotateOverlay');
+
+      if (window.innerHeight > window.innerWidth) {
+    // Portrait mode
+
+        overlay.style.display = 'flex';
+
+      } else {
+    // Landscape mode
+ 
+        overlay.style.display = 'none';
+        
+ 
+      }
+
+    }
+
+// Run on load
+
+    window.addEventListener('load', checkOrientation);
+// Run when device orientation changes or window resizes
+
+    window.addEventListener('resize', checkOrientation);
+
+    window.addEventListener('orientationchange', checkOrientation);
+    
     // Scroll animation for content
     const sections = document.querySelectorAll('.content');
     const observer = new IntersectionObserver((entries) => {
@@ -207,6 +259,7 @@
 
 </body>
 </html>
+
 
 
 
