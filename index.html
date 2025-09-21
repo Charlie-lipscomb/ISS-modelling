@@ -205,6 +205,29 @@ p {
             
 		</div>
 
+		<script>
+   
+			const banners = document.querySelectorAll('.banner');
+
+    
+			const observer = new IntersectionObserver((entries) => {
+      
+				entries.forEach(entry => {
+      
+					if (entry.isIntersecting) {
+      
+						entry.target.classList.add('show');
+    
+					}
+   
+				});
+
+			}, { threshold: 0.2 }); // 20% visible
+
+  
+			banners.forEach(banner => observer.observe(banner));
+
+		</script>
     </header>
     <h1>What is ISS modlling?</h1>
 	<p>The International Space Station (ISS) is one of the greatest achievements of human engineering and international cooperation, serving as a unique laboratory orbiting Earth. At our school, we are working on a student-led project to create a detailed scale replica of the ISS using 3D printing technology. Each student is designing their own STL files for different modules and components of the station, which will then be assembled together to form the full structure. The purpose of this project is not only to showcase our technical and creative skills but also to deepen our understanding of the ISS, its design, and the vital role it plays in advancing science and technology. Building the model allows us to explore how the station is constructed from different interconnected parts, each with its own purpose, whether for research, living space, or power generation. It also encourages teamwork, as the ISS itself is a product of international collaboration between many countries and space agencies. By taking on this challenge, we are gaining hands-on experience in design, problem-solving, and precision engineering, while creating a visually striking and educational model that highlights the importance of space exploration and human ingenuity.</p>
@@ -274,6 +297,7 @@ p {
 
 </body>
 </html>
+
 
 
 
