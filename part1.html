@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Part 1</title>
-    <style>
-      body{
-        background: linear-gradient(#000000 10%, #0b1d3a 90%)
-      }
-      .button-row {
-        display: flex;
-        gap: 15px;
-      }
-      .button {
-        display: inline-block;
-        width: 100%;
-        padding: 12px;
-        background-color: #FFFFFF;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 18px;
-        text-align: center;
-        text-decoration: none;
-      }
+<head>
+  <meta charset="UTF-8">
+  <title>Part 1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(#000000 10%, #0b1d3a 90%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-      .button:hover {
-        background-color: #D6D2CE;
-      }
-    </style>
-  </head>
+    .button-row {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .button {
+      padding: 12px 24px;
+      background-color: #1a3c6e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #2d5aa5;
+    }
+
+    iframe {
+      border: none;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 1024px;
+      height: 600px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
   <body>
     <div class="button-row">
       <button onclick="window.location.href='part1.html'">Go to Prev Item</button>
