@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real ISS Info</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(#000000 2%, #0b1d3a 98%);
+      color: #FF6403;
+      text-align: center;
+    }
+
+    .banner {
+      height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+      background: url("iss-banner.jpg") no-repeat center/cover;
+    }
+
+    .content {
+      min-height: 70vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .content h1 {
+      font-size: 3rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content p {
+      font-size: 1.2rem; font-weight: 300; line-height: 1.6;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content.show h1 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .content.show p { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+    .product-grid {
+      display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+      margin: 40px 0; padding: 0 20px;
+    }
+    .product-card {
+      width: 200px; height: 350px; text-align: center;
+      padding: 20px; border: 2px solid #C28E00;
+      border-radius: 10px; background-color: white;
+      opacity: 0; transform: translateY(40px); transition: all 0.8s ease;
+    }
+    .product-card.show { opacity: 1; transform: translateY(0); }
+    .product-card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .product-image img { width: 150px; }
+    .product-card h3, .product-card p { margin-top: 10px; color: black; }
+    .product-card a { text-decoration: none; color: hsl(211, 100%, 50%); }
+    .product-card a:hover { color: #0056b3; }
+
+    .button {
+      padding: 12px 24px; background-color: #1a3c6e; color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-size: 16px; font-weight: bold;
+    }
+    .button:hover { background-color: #2d5aa5; }
+  </style>
+</head>
+<body>
+
+  <!-- Rotate warning overlay -->
+  <div id="rotateOverlay" style="
+    display: none; position: fixed; top:0; left:0;
+    width:100%; height:100%; background: rgba(0,0,0,0.95);
+    color: #FF6403; font-size: 2rem; display:flex;
+    justify-content:center; align-items:center; text-align:center;
+    z-index: 9999; padding: 20px;">
+    Please rotate your device to landscape for the best experience.
+  </div>
+
+  <header class="banner"></header>
+
+  <section class="content">
+    <h1>The International Space Station</h1>
+    <p>
+      The International Space Station (ISS) is the largest human-made structure in orbit,
+      launched in 1998 through cooperation between the United States, Russia, Europe,
+      Japan, and Canada. It serves as a world-class laboratory for science, engineering,
+      and international collaboration, hosting continuous crews since 2000. Astronauts
+      aboard conduct research in biology, physics, Earth observation, and technology
+      that benefits life on Earth and prepares humanity for deeper space missions.
+    </p>
+  </section>
+
+  <div>
+    <button class="button" onclick="window.location.href='partners.html'">
+      Learn about ISS International Partners
+    </button>
+  </div>
+
+  <main>
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <script>
+    // Orientation check
+    function checkOrientation() {
+      const overlay = document.getElementById('rotateOverlay');
+      if (window.innerHeight > window.innerWidth) {
+        overlay.style.display = 'flex';
+      } else {
+        overlay.style.display = 'none';
+      }
+    }
+    window.addEventListener('load', checkOrientation);
+    window.addEventListener('resize', checkOrientation);
+    window.addEventListener('orientationchange', checkOrientation);
+
+    // Fade-in content observer
+    const sections = document.querySelectorAll('.content');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Populate ISS modules
+    function displayModules() {
+      const modules = [
+        { name: "Destiny Lab", img: "destiny.jpg", link: "destiny.html" },
+        { name: "Columbus Lab", img: "columbus.jpg", link: "columbus.html" },
+        { name: "Kibo Lab", img: "kibo.jpg", link: "kibo.html" },
+        { name: "Unity Node", img: "unity.jpg", link: "unity.html" },
+        { name: "Harmony Node", img: "harmony.jpg", link: "harmony.html" },
+        { name: "Tranquility Node", img: "tranquility.jpg", link: "tranquility.html" },
+        { name: "Cupola", img: "cupola.jpg", link: "cupola.html" },
+        { name: "Quest Airlock", img: "quest.jpg", link: "quest.html" },
+        { name: "Zvezda Service Module", img: "zvezda.jpg", link: "zvezda.html" },
+        { name: "Research & Science", img: "science.jpg", link: "research.html" },
+        { name: "Assembly of ISS", img: "assembly.jpg", link: "assembly.html" },
+        { name: "Commercial Use", img: "commercial.jpg", link: "commercial.html" }
+      ];
+      const grid = document.getElementById("productGrid");
+      grid.innerHTML = '';
+      modules.forEach((m) => {
+        grid.innerHTML += `
+          <div class="product-card">
+            <div class="product-image"><img src="${m.img}" alt="${m.name}"></div>
+            <h3>${m.name}</h3>
+            <a href="${m.link}">Explore</a>
+          </div>
+        `;
+      });
+    }
+    displayModules();
+
+    // Animate product cards on scroll
+    function animateProducts() {
+      const cards = document.querySelectorAll('.product-card');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => { entry.target.classList.add('show'); }, index * 150);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      cards.forEach(card => observer.observe(card));
+    }
+    animateProducts();
+  </script>
+
+  <p>© Charlie Lipscomb</p>
+</body>
+</html>
