@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Destiny Laboratory - ISS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(#000000 2%, #0b1d3a 98%);
+      color: #FF6403;
+      text-align: center;
+    }
+
+    .banner {
+      height: 60vh;
+      display: flex; justify-content: center; align-items: center;
+      background: url("destiny-banner.jpg") no-repeat center/cover;
+    }
+
+    .content {
+      min-height: 50vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .content h1 {
+      font-size: 3rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content p {
+      font-size: 1.2rem; font-weight: 300; line-height: 1.6;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content.show h1 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .content.show p { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+    .facts-grid {
+      display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
+      margin: 40px 0; padding: 0 20px;
+    }
+    .fact-card {
+      width: 220px; height: 200px; text-align: center;
+      padding: 20px; border: 2px solid #C28E00;
+      border-radius: 10px; background-color: white;
+      opacity: 0; transform: translateY(40px); transition: all 0.8s ease;
+    }
+    .fact-card.show { opacity: 1; transform: translateY(0); }
+    .fact-card h3 { margin-top: 10px; color: black; font-size: 1.2rem; }
+    .fact-card p { margin-top: 5px; color: black; font-size: 0.95rem; }
+    .back-button {
+      margin: 20px;
+      padding: 12px 24px; background-color: #1a3c6e; color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-size: 16px; font-weight: bold;
+    }
+    .back-button:hover { background-color: #2d5aa5; }
+  </style>
+</head>
+<body>
+
+  <header class="banner"></header>
+
+  <section class="content">
+    <h1>Destiny Laboratory Module</h1>
+    <p>
+      The Destiny Lab is the primary U.S. research module aboard the International Space Station.
+      It was launched in February 2001 and provides space for 24 research and system racks.
+      Inside, astronauts conduct cutting-edge experiments in biology, physics, Earth science,
+      and technology development. Destiny has a large viewing window and plays a crucial role
+      in advancing science that benefits both life on Earth and future missions beyond low-Earth orbit.
+    </p>
+  </section>
+
+  <main>
+    <div class="facts-grid" id="factsGrid"></div>
+  </main>
+
+  <div>
+    <button class="back-button" onclick="window.location.href='index.html'">← Back to ISS Home</button>
+  </div>
+
+  <script>
+    // Fade-in animation
+    const sections = document.querySelectorAll('.content');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Destiny quick facts
+    function displayFacts() {
+      const facts = [
+        { title: "Launch Date", text: "February 7, 2001 (STS-98)" },
+        { title: "Length", text: "8.5 m (28 ft)" },
+        { title: "Diameter", text: "4.3 m (14 ft)" },
+        { title: "Mass", text: "14,515 kg (32,000 lb)" },
+        { title: "Research Racks", text: "24 (13 scientific, 11 system)" },
+        { title: "Special Feature", text: "Includes a 20-inch science window" }
+      ];
+      const grid = document.getElementById("factsGrid");
+      grid.innerHTML = '';
+      facts.forEach((f) => {
+        grid.innerHTML += `
+          <div class="fact-card">
+            <h3>${f.title}</h3>
+            <p>${f.text}</p>
+          </div>
+        `;
+      });
+    }
+    displayFacts();
+
+    // Animate fact cards
+    function animateFacts() {
+      const cards = document.querySelectorAll('.fact-card');
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => { entry.target.classList.add('show'); }, index * 150);
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      cards.forEach(card => observer.observe(card));
+    }
+    animateFacts();
+  </script>
+
+  <p>© Charlie Lipscomb</p>
+</body>
+</html>
