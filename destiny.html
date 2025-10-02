@@ -39,19 +39,32 @@
     .content.show h1 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
     .content.show p { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
 
-    .facts-grid {
-      display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;
-      margin: 40px 0; padding: 0 20px;
+    .specs {
+      margin: 40px auto;
+      width: 80%;
+      max-width: 700px;
+      border-collapse: collapse;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.5s ease;
     }
-    .fact-card {
-      width: 220px; height: 200px; text-align: center;
-      padding: 20px; border: 2px solid #C28E00;
-      border-radius: 10px; background-color: white;
-      opacity: 0; transform: translateY(40px); transition: all 0.8s ease;
+    .specs.show {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .fact-card.show { opacity: 1; transform: translateY(0); }
-    .fact-card h3 { margin-top: 10px; color: black; font-size: 1.2rem; }
-    .fact-card p { margin-top: 5px; color: black; font-size: 0.95rem; }
+    .specs th, .specs td {
+      border: 2px solid #C28E00;
+      padding: 12px;
+      font-size: 1.1rem;
+      background: white;
+      color: black;
+    }
+    .specs th {
+      background: #1a3c6e;
+      color: white;
+      text-align: left;
+    }
+
     .back-button {
       margin: 20px;
       padding: 12px 24px; background-color: #1a3c6e; color: #fff;
@@ -76,16 +89,22 @@
     </p>
   </section>
 
-  <main>
-    <div class="facts-grid" id="factsGrid"></div>
-  </main>
+  <table class="specs" id="specsTable">
+    <tr><th>Specification</th><th>Details</th></tr>
+    <tr><td>Launch Date</td><td>February 7, 2001 (STS-98)</td></tr>
+    <tr><td>Length</td><td>8.5 m (28 ft)</td></tr>
+    <tr><td>Diameter</td><td>4.3 m (14 ft)</td></tr>
+    <tr><td>Mass</td><td>14,515 kg (32,000 lb)</td></tr>
+    <tr><td>Research Racks</td><td>24 (13 scientific, 11 system)</td></tr>
+    <tr><td>Special Feature</td><td>20-inch science window for Earth observations</td></tr>
+  </table>
 
   <div>
     <button class="back-button" onclick="window.location.href='index.html'">← Back to ISS Home</button>
   </div>
 
   <script>
-    // Fade-in animation
+    // Fade-in animation for text sections
     const sections = document.querySelectorAll('.content');
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -94,43 +113,14 @@
     }, { threshold: 0.2 });
     sections.forEach(section => sectionObserver.observe(section));
 
-    // Destiny quick facts
-    function displayFacts() {
-      const facts = [
-        { title: "Launch Date", text: "February 7, 2001 (STS-98)" },
-        { title: "Length", text: "8.5 m (28 ft)" },
-        { title: "Diameter", text: "4.3 m (14 ft)" },
-        { title: "Mass", text: "14,515 kg (32,000 lb)" },
-        { title: "Research Racks", text: "24 (13 scientific, 11 system)" },
-        { title: "Special Feature", text: "Includes a 20-inch science window" }
-      ];
-      const grid = document.getElementById("factsGrid");
-      grid.innerHTML = '';
-      facts.forEach((f) => {
-        grid.innerHTML += `
-          <div class="fact-card">
-            <h3>${f.title}</h3>
-            <p>${f.text}</p>
-          </div>
-        `;
+    // Fade-in animation for the table
+    const table = document.getElementById('specsTable');
+    const tableObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
       });
-    }
-    displayFacts();
-
-    // Animate fact cards
-    function animateFacts() {
-      const cards = document.querySelectorAll('.fact-card');
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry, index) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => { entry.target.classList.add('show'); }, index * 150);
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      cards.forEach(card => observer.observe(card));
-    }
-    animateFacts();
+    }, { threshold: 0.2 });
+    tableObserver.observe(table);
   </script>
 
   <p>© Charlie Lipscomb</p>
