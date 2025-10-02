@@ -18,7 +18,7 @@
       text-align: center;
     }
 
-    /* Banner styling */
+    
     .banner {
       height: 100vh;
       
@@ -28,19 +28,19 @@
       background: url("IMG_0085.png") no-repeat center/cover;
     }
 .content h1 {
-    font-size: 3rem;        /* big heading */
+    font-size: 3rem;        
     font-weight: 700;
     letter-spacing: 2px;
     margin-bottom: 20px;
 }
 
 .content p {
-    font-size: 1.2rem;      /* readable paragraph */
+    font-size: 1.2rem;     
     font-weight: 300;
     line-height: 1.6;
 }
     
-    /* Content section after banner */
+
     .content {
       min-height: 70vh;
       font-size: 200;
@@ -52,7 +52,7 @@
       padding: 10px;
     }
 
-    /* Hidden by default */
+
     .content h1, 
     .content p {
       opacity: 0;
@@ -61,7 +61,7 @@
       max-width: 70vw;
     }
 
-    /* Fade-in when in view */
+    
     .content.show h1 {
       opacity: 1;
       transform: translateY(0);
@@ -74,7 +74,7 @@
       transition-delay: 0.6s;
     }
 
-    /* Product grid */
+    
     .product-grid {
       display: flex;
       flex-wrap: wrap;
@@ -83,20 +83,20 @@
       margin: 30px 0;
       padding: 0 20px;
     }
-    /* Default hidden state for scroll animation */
+    
 .product-card {
   opacity: 0;
   transform: translateY(40px);
   transition: all 0.8s ease;
 }
 
-/* When visible on scroll */
+
 .product-card.show {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hover pulse / pop effect */
+
 .product-card:hover {
   transform: scale(1.08);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -140,7 +140,7 @@
       color: #0056b3;
     }
 
-    /* Optional search bar & header if needed */
+    
     header {
       display: flex;
       align-items: center;
@@ -155,11 +155,28 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
+     .button {
+      padding: 12px 24px;
+      background-color: #1a3c6e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background-color: #2d5aa5;
+    }
+
 
   </style>
 </head>
 <body>
-  <!-- Add this overlay anywhere in your body -->
+  
   <div id="rotateOverlay" style="
  
     display: none;
@@ -183,10 +200,10 @@
   Please rotate your device to landscape for the best experience.
 </div>
 
-  <!-- Full screen banner -->
+
   <header class="banner"></header>
 
-  <!-- Content section that animates after scrolling past banner -->
+
   <section class="content">
     <h1>What is ISS Modelling?</h1>
     <p>
@@ -196,13 +213,17 @@
       to explore its structure and learn about its design, assembly, and purpose.
     </p>
   </section>
+  
+  <div>
+    <button class="button" onclick="window.location.href='realstation.html'">Click here to find out more about the real International Space Station</button>
+  </div>
 
-  <!-- Product grid -->
+
   <main>
     <div class="product-grid" id="productGrid"></div>
   </main>
 
-  <!-- JavaScript for scroll animations and product generation -->
+
   <script>
   
     function checkOrientation() {
@@ -210,12 +231,12 @@
       const overlay = document.getElementById('rotateOverlay');
 
       if (window.innerHeight > window.innerWidth) {
-    // Portrait mode
+
 
         overlay.style.display = 'flex';
 
       } else {
-    // Landscape mode
+
  
         overlay.style.display = 'none';
         
@@ -224,16 +245,16 @@
 
     }
 
-// Run on load
+
 
     window.addEventListener('load', checkOrientation);
-// Run when device orientation changes or window resizes
+
 
     window.addEventListener('resize', checkOrientation);
 
     window.addEventListener('orientationchange', checkOrientation);
     
-    // Scroll animation for content
+
     const sections = document.querySelectorAll('.content');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -244,7 +265,7 @@
     }, { threshold: 0.2 });
     sections.forEach(section => observer.observe(section));
 
-    // Product grid generation
+
     function displayAllProducts() {
       const products = [
         { "name": "Part1",  "img": "Part1.jpeg", "link": "part1.html" },
@@ -279,7 +300,7 @@
         { "name": "Part 30", "img": "Part30.jpeg", "link": "part30.html" },
         { "name": "Part 31", "img": "Part31.jpeg", "link": "part31.html" },
         { "name": "Part 32", "img": "Part32.jpeg", "link": "part32.html" }
-        // Add more products here if needed
+
       ];
 
       const productGrid = document.getElementById('productGrid');
@@ -304,7 +325,7 @@
   </script>
 
   <script>
-  // Scroll-in animation for product cards
+
  
     function animateProducts() {
       const cards = document.querySelectorAll('.product-card');
@@ -313,8 +334,8 @@
           if (entry.isIntersecting) {
             setTimeout(() => {
               entry.target.classList.add('show');
-            }, index * 150); // stagger delay
-            obs.unobserve(entry.target); // only animate once
+            }, index * 150); 
+            obs.unobserve(entry.target); 
           }
         });
       }, { threshold: 0.2 });
@@ -322,44 +343,10 @@
       cards.forEach(card => observer.observe(card));
     }
   
-    // Run
+
     displayAllProducts();
     animateProducts();
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
