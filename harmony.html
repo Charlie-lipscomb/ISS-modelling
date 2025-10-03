@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harmony Node - ISS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(#000000 2%, #0b1d3a 98%);
+      color: #FF6403;
+      text-align: center;
+    }
+
+    .banner {
+      height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+      background: url("harmony-banner.jpeg") no-repeat center/cover;
+    }
+
+    .content {
+      min-height: 50vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .content h1 {
+      font-size: 3rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content p {
+      font-size: 1.2rem; font-weight: 300; line-height: 1.6;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content.show h1 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .content.show p { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+    .specs {
+      margin: 40px auto;
+      width: 80%;
+      max-width: 700px;
+      border-collapse: collapse;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.5s ease;
+    }
+    .specs.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .specs th, .specs td {
+      border: 2px solid #C28E00;
+      padding: 12px;
+      font-size: 1.1rem;
+      background: white;
+      color: black;
+    }
+    .specs th {
+      background: #1a3c6e;
+      color: white;
+      text-align: left;
+    }
+
+    .back-button {
+      margin: 20px;
+      padding: 12px 24px; background-color: #1a3c6e; color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-size: 16px; font-weight: bold;
+    }
+    .back-button:hover { background-color: #2d5aa5; }
+  </style>
+</head>
+<body>
+
+  <header class="banner"></header>
+
+  <section class="content">
+    <h1>Harmony Node (Node 2)</h1>
+    <p>
+      Harmony, also known as Node 2, is the central connecting module of the International Space Station.
+      Launched in 2007, it links the U.S. laboratory Destiny, the European Columbus laboratory,
+      and the Japanese Kibo laboratory. Harmony also provides living quarters for crew, including
+      sleeping areas and life support systems. It distributes power and data throughout the station,
+      making it a key utility hub. Harmony’s ports also allow visiting spacecraft such as SpaceX
+      Dragon and Cygnus to dock, supporting cargo and crew operations.
+    </p>
+  </section>
+
+  <table class="specs" id="specsTable">
+    <tr><th>Specification</th><th>Details</th></tr>
+    <tr><td>Launch Date</td><td>October 23, 2007 (STS-120)</td></tr>
+    <tr><td>Length</td><td>7.2 m (24 ft)</td></tr>
+    <tr><td>Diameter</td><td>4.4 m (14.4 ft)</td></tr>
+    <tr><td>Mass</td><td>14,288 kg (31,500 lb)</td></tr>
+    <tr><td>Docking Ports</td><td>6 Common Berthing Mechanism ports</td></tr>
+    <tr><td>Special Features</td><td>Connects Destiny, Columbus, and Kibo labs; houses crew living spaces</td></tr>
+  </table>
+
+  <div>
+    <button class="back-button" onclick="window.location.href='realstation.html'">← Back</button>
+  </div>
+
+  <script>
+    // Fade-in animation for text sections
+    const sections = document.querySelectorAll('.content');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Fade-in animation for the table
+    const table = document.getElementById('specsTable');
+    const tableObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    tableObserver.observe(table);
+  </script>
+
+  <p>© Charlie Lipscomb</p>
+</body>
+</html>
