@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zarya Module - ISS</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(#000000 2%, #0b1d3a 98%);
+      color: #FF6403;
+      text-align: center;
+    }
+
+    .banner {
+      height: 100vh;
+      display: flex; justify-content: center; align-items: center;
+      background: url("zarya-banner.jpeg") no-repeat center/cover;
+    }
+
+    .content {
+      min-height: 50vh;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .content h1 {
+      font-size: 3rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content p {
+      font-size: 1.2rem; font-weight: 300; line-height: 1.6;
+      opacity: 0; transform: translateY(40px); transition: all 1.7s ease;
+      max-width: 70vw;
+    }
+    .content.show h1 { opacity: 1; transform: translateY(0); transition-delay: 0.2s; }
+    .content.show p { opacity: 1; transform: translateY(0); transition-delay: 0.6s; }
+
+    .specs {
+      margin: 40px auto;
+      width: 80%;
+      max-width: 700px;
+      border-collapse: collapse;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.5s ease;
+    }
+    .specs.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .specs th, .specs td {
+      border: 2px solid #C28E00;
+      padding: 12px;
+      font-size: 1.1rem;
+      background: white;
+      color: black;
+    }
+    .specs th {
+      background: #1a3c6e;
+      color: white;
+      text-align: left;
+    }
+
+    .back-button {
+      margin: 20px;
+      padding: 12px 24px; background-color: #1a3c6e; color: #fff;
+      border: none; border-radius: 6px; cursor: pointer;
+      font-size: 16px; font-weight: bold;
+    }
+    .back-button:hover { background-color: #2d5aa5; }
+  </style>
+</head>
+<body>
+
+  <header class="banner"></header>
+
+  <section class="content">
+    <h1>Zarya (Functional Cargo Block)</h1>
+    <p>
+      Zarya, also known as the Functional Cargo Block (FGB), was the very first module of the 
+      International Space Station, launched in 1998. Built by Russia and funded by the United States, 
+      it provided early power, propulsion, and storage for the growing station before other modules arrived. 
+      Today, Zarya still serves as a storage facility and pressurised cargo hold, though many of its original 
+      systems have been replaced by newer modules.
+    </p>
+  </section>
+
+  <table class="specs" id="specsTable">
+    <tr><th>Specification</th><th>Details</th></tr>
+    <tr><td>Launch Date</td><td>November 20, 1998 (Proton-K rocket)</td></tr>
+    <tr><td>Length</td><td>12.6 m (41 ft)</td></tr>
+    <tr><td>Diameter</td><td>4.1 m (13.5 ft)</td></tr>
+    <tr><td>Mass</td><td>19,300 kg (42,600 lb)</td></tr>
+    <tr><td>Main Functions</td><td>Early power, propulsion, attitude control, and cargo storage</td></tr>
+    <tr><td>Special Features</td><td>First ISS module; built by Russia, funded by NASA</td></tr>
+  </table>
+
+  <div>
+    <button class="back-button" onclick="window.location.href='realstation.html'">← Back</button>
+  </div>
+
+  <script>
+    // Fade-in animation for text sections
+    const sections = document.querySelectorAll('.content');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => sectionObserver.observe(section));
+
+    // Fade-in animation for the table
+    const table = document.getElementById('specsTable');
+    const tableObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.2 });
+    tableObserver.observe(table);
+  </script>
+
+  <p>© Charlie Lipscomb</p>
+</body>
+</html>
